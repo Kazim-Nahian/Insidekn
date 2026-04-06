@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kazim Nahian | Next-Gen Interface</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&family=Hind+Siliguri:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        :root {
+            --neon-cyan: #00f2ff;
+            --neon-magenta: #ff00ff;
+            --bg-dark: #02050a;
+            --panel-glass: rgba(10, 25, 41, 0.85);
+            --border-glow: rgba(0, 242, 255, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        body {
+            background-color: var(--bg-dark);
+            color: #fff;
+            font-family: 'Hind Siliguri', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Cyber Grid Background --- */
+        #canvas-net { position: fixed; top: 0; left: 0; z-index: -1; }
+
+        /* --- HUD Layout --- */
+        .hud-top {
+            position: fixed; top: 0; width: 100%; padding: 15px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border-glow);
+            backdrop-filter: blur(15px); z-index: 1000;
+            background: linear-gradient(90deg, rgba(0,242,255,0.05), transparent);
+        }
+        .hud-text { font-family: 'Share Tech Mono', monospace; color: var(--neon-cyan); letter-spacing: 2px; font-size: 0.8rem; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 120px 20px; }
+
+        /* --- Hero Section --- */
+        .hero-section { margin-bottom: 100px; }
+        .glitch {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            position: relative;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow { from { text-shadow: 0 0 10px var(--neon-cyan); } to { text-shadow: 0 0 30px var(--neon-magenta); } }
+
+        .tagline {
+            font-family: 'Share Tech Mono', monospace;
+            background: var(--neon-cyan);
+            color: #000;
+            padding: 5px 15px;
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* --- Professional Modules --- */
+        .module-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 50px; }
+        .module-card {
+            background: var(--panel-glass);
+            border: 1px solid var(--border-glow);
+            padding: 35px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .module-card:hover {
+            transform: scale(1.03);
+            border-color: var(--neon-magenta);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.15);
+        }
+        .module-card i { font-size: 2.5rem; color: var(--neon-cyan); margin-bottom: 20px; }
+        .module-card h3 { font-family: 'Orbitron', sans-serif; margin-bottom: 15px; font-size: 1.4rem; letter-spacing: 1px; }
+        .module-card p { color: #b0b0b0; line-height: 1.7; font-size: 0.95rem; }
+
+        /* --- Ultra-Premium Contact Hub --- */
+        .contact-hub {
+            background: rgba(0, 242, 255, 0.02);
+            border: 2px solid var(--neon-cyan);
+            padding: 60px 40px;
+            margin-top: 100px;
+            border-radius: 20px;
+            position: relative;
+            text-align: center;
+        }
+        .contact-hub::before {
+            content: 'COMMUNICATION_UPLINK';
+            position: absolute; top: -15px; left: 50%;
+            transform: translateX(-50%); background: var(--bg-dark);
+            padding: 0 20px; font-family: 'Orbitron'; font-size: 0.8rem; color: var(--neon-cyan);
+        }
+
+        .info-strip {
+            display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 40px;
+        }
+
+        .contact-pill {
+            background: var(--panel-glass);
+            border: 1px solid var(--neon-cyan);
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: flex; align-items: center; gap: 15px;
+            cursor: pointer; transition: 0.3s;
+            text-decoration: none; color: #fff;
+            font-family: 'Orbitron', sans-serif; font-size: 0.9rem;
+        }
+        .contact-pill:hover {
+            background: var(--neon-cyan); color: #000;
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+        .contact-pill i { font-size: 1.2rem; }
+
+        /* --- Footer Info --- */
+        footer { margin-top: 100px; padding-bottom: 50px; text-align: center; font-size: 0.8rem; color: #444; font-family: 'Share Tech Mono'; }
+
+        /* --- Toast Notification --- */
+        #copy-toast {
+            position: fixed; bottom: 40px; right: 40px;
+            background: var(--neon-magenta); color: #fff;
+            padding: 12px 25px; border-radius: 5px; font-weight: bold;
+            display: none; animation: slideUp 0.4s ease-out; z-index: 2000;
+        }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        @media (max-width: 768px) {
+            .hud-top { padding: 15px 20px; }
+            .glitch { font-size: 2.8rem; }
+            .info-strip { flex-direction: column; }
+            .contact-pill { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas-net"></canvas>
+
+    <div class="hud-top">
+        <div class="hud-text">KAZIM_OS V4.0</div>
+        <div class="hud-text">STATUS: SECURE_CONNECTION</div>
+    </div>
+
+    <div class="container">
+        <section class="hero-section">
+            <h1 class="glitch">KAZIM NAHIAN</h1>
+            <div class="tagline">FULL-STACK DEVELOPER // ROBOTICS ARCHITECT</div>
+            <p style="margin-top: 25px; color: #888; max-width: 700px;">আমি বিজ্ঞান বিভাগের একজন শিক্ষার্থী (SSC '26), যে ভবিষ্যতের প্রযুক্তি এবং নিউরো-ইন্টারফেস নিয়ে কাজ করতে পছন্দ করি। আমার কাজগুলো বাস্তব এবং ডিজিটাল জগতের মধ্যে একটি সেতু তৈরি করে।</p>
+        </section>
+
+        <div class="module-grid">
+            <div class="module-card">
+                <i class="fas fa-brain"></i>
+                <h3>Neuro Science</h3>
+                <p>কোরিয়া থেকে স্বীকৃত স্নায়বিক প্রযুক্তি গবেষণা। হিউম্যান-মেশিন কানেক্টিভিটি এবং বিসিআই লজিক নিয়ে কাজ করার অভিজ্ঞতা।</p>
+            </div>
+            <div class="module-card">
+                <i class="fas fa-robot"></i>
+                <h3>Robotics Tech</h3>
+                <p>আমার তৈরি রোবটিক ইনোভেশন ৩টি টিভি চ্যানেল এবং ৫টি জাতীয় সংবাদপত্রে ফিচারড হয়েছে। অটোনোমাস হার্ডওয়্যার মডিউল বিশেষজ্ঞ।</p>
+            </div>
+            <div class="module-card">
+                <i class="fas fa-code-branch"></i>
+                <h3>KNweb Ecosystem</h3>
+                <p>প্রিমিয়াম ইউআই/ইউএক্স এবং ফিউচারিস্টিক ওয়েব ড্যাশবোর্ড ডিজাইন। মডার্ণ টেক স্ট্যাকের মাধ্যমে ডিজিটাল সমস্যার সমাধান।</p>
+            </div>
+        </div>
+
+        <section class="contact-hub">
+            <h2 style="font-family: 'Orbitron'; font-size: 1.8rem; margin-bottom: 10px;">ESTABLISH UPLINK</h2>
+            <p style="color: #666;">সরাসরি যোগাযোগের জন্য যেকোনো একটি গেটওয়ে সিলেক্ট করুন</p>
+            
+            <div class="info-strip">
+                <div class="contact-pill" onclick="copyAction('09638183029', 'ফোন নাম্বার কপি হয়েছে!')">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+880 9638183029</span>
+                </div>
+
+                <div class="contact-pill" onclick="copyAction('kazimnahian@proton.me', 'ইমেইল কপি হয়েছে!')">
+                    <i class="fas fa-envelope"></i>
+                    <span>KAZIMNAHIAN@PROTON.ME</span>
+                </div>
+
+                <a href="https://instagram.com/kazim_nahian" target="_blank" class="contact-pill">
+                    <i class="fab fa-instagram"></i>
+                    <span>INSTAGRAM</span>
+                </a>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <a href="mailto:kazimnahian@proton.me" style="color: var(--neon-cyan); text-decoration: none; font-family: 'Share Tech Mono';">
+                    > SEND_DIRECT_TRANSMISSION_TO_CENTRAL_SERVER
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            DESIGNED BY KNweb // ENCRYPTED DATA TRANSFER // © 2026 KAZIM NAHIAN
+        </footer>
+    </div>
+
+    <div id="copy-toast">SUCCESS: DATA_COPIED</div>
+
+    <script>
+        // --- Particle Network Background ---
+        const canvas = document.getElementById('canvas-net');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = 1.2;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(0, 242, 255, 0.3)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particles = [];
+            for (let i = 0; i < 80; i++) particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        init(); animate();
+
+        // --- Copy Interaction ---
+        function copyAction(text, msg) {
+            navigator.clipboard.writeText(text);
+            const toast = document.getElementById('copy-toast');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 2500);
+        }
+
+        window.onresize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; init(); };
+    </script>
+</body>
+</html>
