@@ -75,7 +75,8 @@
         .id-title { font-size: 0.8rem; color: #fff; font-weight: 500; }
         .id-status { font-size: 0.65rem; color: var(--cyber-cyan); font-weight: bold; }
 
-        .nasa-logo { width: 42px; height: auto; object-fit: contain; filter: drop-shadow(0 0 4px rgba(255,255,255,0.1)); }
+        /* --- NASA Inline SVG Logo Wrapper --- */
+        .nasa-logo-svg { width: 45px; height: auto; display: block; filter: drop-shadow(0 0 4px rgba(255,255,255,0.1)); }
 
         /* --- Main Layout --- */
         .container { max-width: 1140px; margin: 0 auto; padding: 160px 20px 60px 20px; }
@@ -241,7 +242,16 @@
                 <div class="id-title" id="badge-title">Verified Contributor Portfolio</div>
                 <div class="id-status" id="badge-sub">IDENTITY STATUS: SECURED (LEVEL-2)</div>
             </div>
-            <img src="https://code.nasa.gov/images/logos/nasa-144.png" alt="NASA Logo" class="nasa-logo">
+            <!-- Hand-coded Official NASA SVG (Unblockable on GitHub Pages) -->
+            <svg class="nasa-logo-svg" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="57" cy="50" rx="42" ry="32" fill="#0b3d91"/>
+                <path d="M22,78 Q60,10 98,72 Q55,45 22,78 Z" fill="none" stroke="#f13a16" stroke-width="3"/>
+                <text x="56" y="60" font-family="'Arial Black', Impact, sans-serif" font-size="28" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="0">NASA</text>
+                <circle cx="34" cy="36" r="1.5" fill="#ffffff"/>
+                <circle cx="82" cy="32" r="1" fill="#ffffff"/>
+                <circle cx="78" cy="64" r="1.5" fill="#ffffff"/>
+                <circle cx="42" cy="66" r="1" fill="#ffffff"/>
+            </svg>
         </div>
     </div>
 
@@ -336,7 +346,7 @@
             <div class="module-card">
                 <i class="fas fa-certificate"></i>
                 <h3>Space Apps Network</h3>
-                <p>গ্লোবাল装备 স্পেস অ্যাপস চ্যালেঞ্জের ভেরিফাইড প্রোফাইল ডাটাবেজ। আমার উদ্ভাবিত মেকানিজমগুলো বাংলাদেশের ৩টি শীর্ষ টেলিভিশন চ্যানেল এবং ৫টি জাতীয় দৈনিক সংবাদপত্রে ফিচারড হয়েছে।</p>
+                <p>গ্লোবাল স্পেস অ্যাপস চ্যালেঞ্জের ভেরিফাইড প্রোফাইল ডাটাবেজ। আমার উদ্ভাবিত মেকানিজমগুলো বাংলাদেশের ৩টি শীর্ষ টেলিভিশন চ্যানেল এবং ৫টি জাতীয় দৈনিক সংবাদপত্রে ফিচারড হয়েছে।</p>
                 <a href="https://www.spaceappschallenge.org" target="_blank" class="btn-verify"><i class="fas fa-external-link-alt"></i> spaceappschallenge.org</a>
             </div>
         </div>
